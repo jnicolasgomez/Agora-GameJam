@@ -7,6 +7,9 @@ public class characterController : MonoBehaviour {
 	
 	public float speed = 20.0F;
 	public float rotationSpeed = 100.0F;
+    private bool isDead;
+    public Transform respawn;
+    private bool hasFlash;
 	
 	
 	//Jump Variables
@@ -19,6 +22,8 @@ public class characterController : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+        hasFlash = true;
+        isDead = false;
 		anim= GetComponent<Animator>();
 		rb = GetComponent<Rigidbody>();
 		jumpVector = new Vector3(0.0F,2.0F,0.0F);
@@ -37,7 +42,11 @@ public class characterController : MonoBehaviour {
 		straffe*=Time.deltaTime;
 		
 		transform.Translate(straffe,0,translation);
-				
+        if (Input.GetButtonDown("Fire3") && hasFlash) {
+            transform.position += new Vector3(0, 0, 10);
+            //hasFlash = false;
+        }
+        
 		if(Input.GetButtonDown("Jump") && isGrounded){
 			rb.AddForce(jumpVector * jumpForce, ForceMode.Impulse);
 			anim.SetTrigger("isJumping");
@@ -51,6 +60,16 @@ public class characterController : MonoBehaviour {
 			anim.SetBool("isRunning",false);
 			anim.SetBool("isIdle",true);
 		}
+
 		
 	}
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Killzone" && !isDead)
+        {
+            this.transform.position = respawn.position;
+        }
+    
+    }
 }
