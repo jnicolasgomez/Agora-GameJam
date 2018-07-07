@@ -62,6 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Car Script basic\Script\Dot_Truck_Controller.cs" />
+    <Compile Include="Assets\Character\Script\cameraCollision.cs" />
+    <Compile Include="Assets\Character\Script\cameraFollow.cs" />
     <Compile Include="Assets\Character\Script\characterController.cs" />
     <Compile Include="Assets\Lava_Flowing_Shader\Scripts\ScrollingUVs_Layers.cs" />
     <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\CameraTarget.cs" />
