@@ -7392,8 +7392,8 @@ MonoBehaviour:
   lobo: {fileID: 354652659}
   activo: 0
   img: 
-  timer: 0.1
-  delay: 0.1
+  timer: 0.5
+  delay: 0.5
 --- !u!114 &692464867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37424,8 +37424,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2002141228}
   m_LocalRotation: {x: 0.50000006, y: 0.5, z: 0.50000006, w: 0.5}
-  m_LocalPosition: {x: -3.3, y: -9.2, z: 8.56}
-  m_LocalScale: {x: 25.998278, y: 4.978541, z: 10.912222}
+  m_LocalPosition: {x: -3.3, y: -1.9, z: 8.56}
+  m_LocalScale: {x: 6.252197, y: 4.978541, z: 10.912222}
   m_Children: []
   m_Father: {fileID: 930380088}
   m_RootOrder: 7

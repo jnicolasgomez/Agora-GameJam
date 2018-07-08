@@ -93,7 +93,7 @@ public class characterController : MonoBehaviour {
         }
         if (power == "cal") {
             //vida1.TakeDamage(100f);
-            death();
+            StartCoroutine(_Death());
             slowTime.activo = false;
             power = "";
             hasFlash = true;
@@ -126,13 +126,13 @@ public class characterController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Killzone" && !isDead)
         {
-            death();
+            StartCoroutine(_Death());
         }
         else if (other.gameObject.tag == "damageObject") {
             vida1.TakeDamage(20);
             this.vida -= 20;
             if (this.vida <= 0) {
-                death();
+                StartCoroutine(_Death());
             }
         }
     
@@ -178,11 +178,15 @@ public class characterController : MonoBehaviour {
         }
     }
 
-    void death() {
+    public IEnumerator _Death(){
         this.power = "";
         slowTime.activo = false;
+		anim.SetBool("isDead",true);
+		yield return new WaitForSeconds(4.0F);
+		anim.SetBool("isDead",false);
         this.transform.position = respawn.position;
         this.vida = 100;
         vida1.restartHeatlth();
+		
     }
 }
