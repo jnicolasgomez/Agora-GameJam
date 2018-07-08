@@ -40,7 +40,7 @@ public class characterController : MonoBehaviour {
 	void Start () 
 	{
         flashCounter = 0;
-        power = "None";
+        power = "";
         hasFlash = true;
         isDead = false;
 		anim= GetComponent<Animator>();
@@ -182,7 +182,7 @@ public class characterController : MonoBehaviour {
         this.power = "";
         slowTime.activo = false;
 		anim.SetBool("isDead",true);
-		yield return new WaitForSeconds(4.0F);
+		yield return new WaitForSeconds(3.9F);
 		anim.SetBool("isDead",false);
         this.transform.position = respawn.position;
         this.vida = 100;
