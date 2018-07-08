@@ -45,8 +45,13 @@ public class characterController : MonoBehaviour {
 		jumpVector = new Vector3(0.0F,2.0F,0.0F);
     }
 	
+	void OnCollisionExit(){
+		isGrounded=false;
+	}
 	void OnCollisionStay(){
 		isGrounded = true;
+		anim.SetBool("isJumping",false);
+		anim.SetBool("isFalling",false);
 	}
 	
 	// Update is called once per frame
@@ -83,8 +88,13 @@ public class characterController : MonoBehaviour {
         
 		if(Input.GetButtonDown("Jump") && isGrounded){
 			rb.AddForce(jumpVector * jumpForce, ForceMode.Impulse);
-			anim.SetTrigger("isJumping");
+			anim.SetBool("isJumping",true);
 			isGrounded=false;
+		}
+	
+		
+		if( !(isGrounded) && !(anim.GetBool("isJumping"))){
+			anim.SetBool("isFalling",true);
 		}
 		if(translation!=0 || straffe!=0){
 			anim.SetBool("isRunning",true);
