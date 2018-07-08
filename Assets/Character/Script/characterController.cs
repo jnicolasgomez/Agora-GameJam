@@ -35,6 +35,8 @@ public class characterController : MonoBehaviour {
 
     public int flashCounter;
 
+    //jump
+    public bool doublejump;
 	
 	// Use this for initialization
 	void Start () 
@@ -99,8 +101,18 @@ public class characterController : MonoBehaviour {
             hasFlash = true;
             flashCounter = 0;
         }
-        
-		if(Input.GetButtonDown("Jump") && isGrounded){
+
+        if (power == "alas")
+        {
+    
+            slowTime.activo = false;
+            doublejump = true;
+            power = "";
+            hasFlash = true;
+            flashCounter = 0;
+        }
+
+        if (Input.GetButtonDown("Jump") && (isGrounded || doublejump)){
 			rb.AddForce(jumpVector * jumpForce, ForceMode.Impulse);
 			anim.SetBool("isJumping",true);
 			isGrounded=false;
@@ -143,7 +155,7 @@ public class characterController : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("poder"))
         {
-            
+            doublejump = true;
             slowTime.activo = false;
             other.gameObject.SetActive(false);
             elbono.activo = true;
@@ -181,6 +193,7 @@ public class characterController : MonoBehaviour {
     public IEnumerator _Death(){
         this.power = "";
         slowTime.activo = false;
+        doublejump = false;
 		anim.SetBool("isDead",true);
 		yield return new WaitForSeconds(3.9F);
 		anim.SetBool("isDead",false);
