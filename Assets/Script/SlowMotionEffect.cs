@@ -6,20 +6,25 @@ public class SlowMotionEffect : MonoBehaviour {
 
     public float frozenTime;
     public float timeUnfrozen;
+    public bool activo;
 	// Use this for initialization
 	void Start () {
-		
+        activo = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (!Input.anyKey)
+        if (activo == true)
         {
-            Time.timeScale = frozenTime;
+            if (!Input.anyKey)
+            {
+                Time.timeScale = frozenTime;
 
-        }
-        else {
-            Time.timeScale = timeUnfrozen;
+            }
+            else
+            {
+                Time.timeScale = timeUnfrozen;
+            }
         }
 	}
 }

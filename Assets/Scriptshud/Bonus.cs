@@ -6,17 +6,19 @@ using System.Collections;
 
 public class Bonus : MonoBehaviour {
 	public GameObject calavera;
-	public GameObject luz;
+	public GameObject alas;
 	public GameObject reloj;
-	public bool activo;
+    public GameObject lobo;
+    public bool activo;
 	public string img;
 	public float timer = 1f;
 	public float delay = 1f;
 	void Start(){
-		calavera.SetActive (false);
-		luz.SetActive (true);
+		calavera.SetActive (true);
+		alas.SetActive (false);
 		reloj.SetActive (false);
-		img = "luz";
+        lobo.SetActive(false);
+		img = "cal";
 		activo=false;
 	}
 	void Update(){
@@ -26,14 +28,14 @@ public class Bonus : MonoBehaviour {
 		if (timer <= 0) {
 			if (img=="cal") {
 				calavera.SetActive (false);
-				luz.SetActive (true);
-				img = "luz";
+				alas.SetActive (true);
+				img = "alas";
 				timer = delay;
 				return;
 
 			}
-			if (img=="luz") {
-				luz.SetActive (false);
+			if (img=="alas") {
+				alas.SetActive (false);
 				reloj.SetActive (true);
 				img = "rel";
 				timer = delay;
@@ -42,14 +44,20 @@ public class Bonus : MonoBehaviour {
 			}
 			if (img=="rel") {
 				reloj.SetActive (false);
-				calavera.SetActive (true);
-				img = "cal";
+				lobo.SetActive (true);
+				img = "lobo";
 				timer = delay;
 				return;
-
-
 			}
-		}
+                if (img == "lobo")
+                {
+                    lobo.SetActive(false);
+                    calavera.SetActive(true);
+                    img = "cal";
+                    timer = delay;
+                    return;
+                }
+            }
 		}
 
 	}

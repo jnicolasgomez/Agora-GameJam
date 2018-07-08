@@ -12,11 +12,13 @@ public class control : MonoBehaviour {
 	//public Healthbar health;
 	public Vida vida1;
 	public Bonus elbono;
+    
 	void Start(){
 		rb = GetComponent<Rigidbody> ();
 		count = 0;
 		SetCountText();
 		winText.text = "";
+        
 	}
 	void FixedUpdate(){
 		float moveHorizontal = Input.GetAxis ("Horizontal");
@@ -25,7 +27,9 @@ public class control : MonoBehaviour {
 		rb.AddForce (movement*speed);
 		if (Input.GetMouseButtonDown (0) && elbono.activo == true) {
 			elbono.activo = false;
+            
 		}
+
 	}
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.CompareTag("Pick Up")) {
