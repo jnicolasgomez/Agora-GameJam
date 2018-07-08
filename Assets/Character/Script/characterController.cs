@@ -10,11 +10,11 @@ public class characterController : MonoBehaviour {
     private bool isDead;
     public Transform respawn;
     private bool hasFlash;
-	
-	
-	//Jump Variables
-	
-	public float jumpForce = 2.0F;
+    //hud variables
+    public Bonus elbono;
+    //Jump Variables
+
+    public float jumpForce = 2.0F;
 	public Vector3 jumpVector;
 	public bool isGrounded;
 	Rigidbody rb;
@@ -35,8 +35,13 @@ public class characterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		float translation = Input.GetAxis("Vertical") * speed;
+        //update bono hud
+        if (Input.GetMouseButtonDown(0) && elbono.activo == true)
+        {
+            elbono.activo = false;
+        }
+        //
+        float translation = Input.GetAxis("Vertical") * speed;
 		float straffe = Input.GetAxis("Horizontal") * speed;
 		translation*=Time.deltaTime;
 		straffe*=Time.deltaTime;
@@ -72,4 +77,14 @@ public class characterController : MonoBehaviour {
         }
     
     }
-}
+
+    //coger el bono
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("poder"))
+        {
+            other.gameObject.SetActive(false);
+            elbono.activo = true;
+        }
+    }
+        }

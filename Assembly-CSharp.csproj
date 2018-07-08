@@ -65,6 +65,7 @@
     <Compile Include="Assets\Character\Script\cameraCollision.cs" />
     <Compile Include="Assets\Character\Script\cameraFollow.cs" />
     <Compile Include="Assets\Character\Script\characterController.cs" />
+    <Compile Include="Assets\Healthbar.cs" />
     <Compile Include="Assets\Lava_Flowing_Shader\Scripts\ScrollingUVs_Layers.cs" />
     <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\CameraTarget.cs" />
     <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\EffectController.cs" />
@@ -74,6 +75,13 @@
     <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\TransformExtension.cs" />
     <Compile Include="Assets\Script\MovingPlatform.cs" />
     <Compile Include="Assets\Script\RotationWheel.cs" />
+    <Compile Include="Assets\Script\SlowMotionEffect.cs" />
+    <Compile Include="Assets\Scriptshud\Bonus.cs" />
+    <Compile Include="Assets\Scriptshud\camaracontrol1.cs" />
+    <Compile Include="Assets\Scriptshud\control.cs" />
+    <Compile Include="Assets\Scriptshud\rotator.cs" />
+    <Compile Include="Assets\Scriptshud\Scroll.cs" />
+    <Compile Include="Assets\Scriptshud\Vida.cs" />
     <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Simple.shader" />
     <None Include="Assets\Lava_Flowing_Shader\Shaders\Diffuse_Lava_Distort.shader" />
     <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort.shader" />
