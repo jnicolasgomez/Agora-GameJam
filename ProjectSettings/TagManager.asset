@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Killzone
   - poder
+  - damageObject
   layers:
   - Default
   - TransparentFX

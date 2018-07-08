@@ -13,7 +13,8 @@ public class SlowMotionEffect : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+
         if (activo == true)
         {
             if (!Input.anyKey)
@@ -26,5 +27,11 @@ public class SlowMotionEffect : MonoBehaviour {
                 Time.timeScale = timeUnfrozen;
             }
         }
-	}
+        else {
+            Time.timeScale = 1;
+        }
+            
+    }
+
+
 }

@@ -34,4 +34,11 @@ public class Vida:MonoBehaviour {
 
 
 	}
+
+    public void restartHeatlth() {
+        hitpoint = 97.5f;
+        maxHitpoint = 100;
+        espacioespuma = 0.025f;
+        UpdateHealth();
+}
 }

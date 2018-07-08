@@ -33,10 +33,13 @@ public class characterController : MonoBehaviour {
 
     public SlowMotionEffect slowTime;
 
+    public int flashCounter;
+
 	
 	// Use this for initialization
 	void Start () 
 	{
+        flashCounter = 0;
         power = "None";
         hasFlash = true;
         isDead = false;
@@ -68,17 +71,28 @@ public class characterController : MonoBehaviour {
 		straffe*=Time.deltaTime;
 		
 		transform.Translate(straffe,0,translation);
-        if (power == "luz" && Input.GetButtonDown("Fire3") && hasFlash) {
+        if (power == "lobo" && Input.GetButtonDown("Fire3") && hasFlash) {
             transform.position += new Vector3(0, 0, 10);
+            slowTime.activo = false;
+            flashCounter += 1;
+            if (flashCounter == 3) {
+                hasFlash = false;
+            }
             //hasFlash = false;
         }
         if (power == "rel") {
             slowTime.activo = true;
+            power = "";
+            hasFlash = true;
+            flashCounter = 0;
         }
         if (power == "cal") {
             //vida1.TakeDamage(100f);
             death();
+            slowTime.activo = false;
             power = "";
+            hasFlash = true;
+            flashCounter = 0;
         }
         
 		if(Input.GetButtonDown("Jump") && isGrounded){
@@ -104,6 +118,13 @@ public class characterController : MonoBehaviour {
         {
             death();
         }
+        else if (other.gameObject.tag == "damageObject") {
+            vida1.TakeDamage(20);
+            this.vida -= 20;
+            if (this.vida <= 0) {
+                death();
+            }
+        }
     
     }
 
@@ -112,6 +133,7 @@ public class characterController : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("poder"))
         {
+            
             slowTime.activo = false;
             other.gameObject.SetActive(false);
             elbono.activo = true;
@@ -147,6 +169,10 @@ public class characterController : MonoBehaviour {
     }
 
     void death() {
+        this.power = "";
+        slowTime.activo = false;
         this.transform.position = respawn.position;
+        this.vida = 100;
+        vida1.restartHeatlth();
     }
 }

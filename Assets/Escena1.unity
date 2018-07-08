@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frozenTime: 0.1
   timeUnfrozen: 0.5
-  activo: 0
+  activo: 1
 --- !u!4 &659824453
 Transform:
   m_ObjectHideFlags: 0
@@ -2883,7 +2883,7 @@ GameObject:
   - component: {fileID: 1119446744}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: damageObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3113,6 +3113,7 @@ MonoBehaviour:
   isGrounded: 0
   vida1: {fileID: 990755163}
   slowTime: {fileID: 659824452}
+  flashCounter: 0
 --- !u!1 &1141137619
 GameObject:
   m_ObjectHideFlags: 0
@@ -4350,7 +4351,7 @@ GameObject:
   - component: {fileID: 1348558562}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: damageObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6236,7 +6237,7 @@ GameObject:
   - component: {fileID: 1793161886}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: damageObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7140,7 +7141,7 @@ GameObject:
   - component: {fileID: 1966149905}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: damageObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
