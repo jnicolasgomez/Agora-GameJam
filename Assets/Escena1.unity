@@ -3102,6 +3102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfb4f6b82f353641859b9221ce1447b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneCamera: {fileID: 1146036182}
   vida: 100
   speed: 10
   rotationSpeed: 5

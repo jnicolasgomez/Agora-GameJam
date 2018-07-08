@@ -5,9 +5,16 @@ using UnityEngine;
 public class characterController : MonoBehaviour {
 	static Animator anim;
 
+    public Camera sceneCamera;
+
+    Vector3 inputVec;
+
+    float x;
+    float z;
+
     public float vida = 100;
 	public float speed = 20.0F;
-	public float rotationSpeed = 100.0F;
+	public float rotationSpeed = 10.0F;
     private bool isDead;
     public Transform respawn;
     private bool hasFlash;
@@ -44,6 +51,7 @@ public class characterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        CameraRelativeMovement();
         //update bono hud
         if (Input.GetMouseButtonDown(0) && elbono.activo == true)
         {
@@ -54,8 +62,8 @@ public class characterController : MonoBehaviour {
         }
         //
 
-        float translation = Input.GetAxis("Vertical") * speed;
-		float straffe = Input.GetAxis("Horizontal") * speed;
+        float translation = z * speed;
+		float straffe = x * speed;
 		translation*=Time.deltaTime;
 		straffe*=Time.deltaTime;
 		
@@ -86,7 +94,7 @@ public class characterController : MonoBehaviour {
 			anim.SetBool("isRunning",false);
 			anim.SetBool("isIdle",true);
 		}
-
+        RotateTowardsMovementDir();
 		
 	}
 
@@ -104,12 +112,37 @@ public class characterController : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("poder"))
         {
-            if (slowTime.activo == true) {
-                Debug.Log("SLOW TIMEEE");
-                slowTime.activo = false;
-            }
+            slowTime.activo = false;
             other.gameObject.SetActive(false);
             elbono.activo = true;
+        }
+    }
+
+    void CameraRelativeMovement()
+    {
+
+        float inputHorizontal = Input.GetAxisRaw("Horizontal");
+        float inputVertical = Input.GetAxisRaw("Vertical");
+
+        //converts control input vectors into camera facing vectors
+        Transform cameraTransform = sceneCamera.transform;
+        //Forward vector relative to the camera along the x-z plane   
+        Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
+        forward.y = 0;
+        forward = forward.normalized;
+        //Right vector relative to the camera always orthogonal to the forward vector
+        Vector3 right = new Vector3(forward.z, 0, -forward.x);
+        //directional inputs
+        x = inputHorizontal;
+        z = inputVertical;
+        inputVec = x * right + z * forward;
+    }
+
+    void RotateTowardsMovementDir()
+    {
+        if (inputVec != Vector3.zero )
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVec), Time.deltaTime * rotationSpeed);
         }
     }
 
