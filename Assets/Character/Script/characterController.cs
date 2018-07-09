@@ -84,12 +84,15 @@ public class characterController : MonoBehaviour {
             flashCounter += 1;
             if (flashCounter == 3) {
                 hasFlash = false;
+                flashCounter = 0;
             }
+            doublejump = false;
             //hasFlash = false;
         }
         if (power == "rel") {
             slowTime.activo = true;
             power = "";
+            doublejump = false;
             hasFlash = true;
             flashCounter = 0;
         }
@@ -97,6 +100,7 @@ public class characterController : MonoBehaviour {
             //vida1.TakeDamage(100f);
             StartCoroutine(_Death());
             slowTime.activo = false;
+            doublejump = false;
             power = "";
             hasFlash = true;
             flashCounter = 0;
@@ -155,6 +159,7 @@ public class characterController : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("poder"))
         {
+            hasFlash = true;
             doublejump = true;
             slowTime.activo = false;
             other.gameObject.SetActive(false);
